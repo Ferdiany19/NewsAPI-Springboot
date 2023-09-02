@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ferdian.newsAPI.payloads.req.LoginUserRequest;
 import com.ferdian.newsAPI.payloads.req.RegisterUserRequest;
 import com.ferdian.newsAPI.services.user.UserService;
 
@@ -21,5 +22,10 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody @Valid RegisterUserRequest request) {
         return userService.registerUserService(request);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody @Valid LoginUserRequest request) {
+        return userService.loginUserService(request);
     }
 }

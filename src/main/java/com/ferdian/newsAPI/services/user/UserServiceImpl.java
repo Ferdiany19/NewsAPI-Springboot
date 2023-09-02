@@ -3,6 +3,7 @@ package com.ferdian.newsAPI.services.user;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.ferdian.newsAPI.models.Role;
 import com.ferdian.newsAPI.models.User;
+import com.ferdian.newsAPI.payloads.req.LoginUserRequest;
 import com.ferdian.newsAPI.payloads.req.RegisterUserRequest;
 import com.ferdian.newsAPI.payloads.res.ResponseHander;
 import com.ferdian.newsAPI.repositories.RoleRepository;
@@ -46,6 +48,19 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return ResponseHander.responseMessage(HttpStatus.CREATED.value(), "Success Add User", true);
+    }
+
+    @Override
+    public ResponseEntity<?> loginUserService(LoginUserRequest request) {
+        if (!userRepository.existsByUsername(request.getUsernameOrEmail())
+                && !userRepository.existsByEmail(request.getUsernameOrEmail())) {
+            throw new EntityNotFoundException("Username or Email not found!");
+        }
+
+        if (!userRepository.existsByPassword(request.getPassword())) {
+            throw new EntityNotFoundException("Password invalid!");
+        }
+        return ResponseHander.responseMessage(HttpStatus.OK.value(), "Login Success", true);
     }
 
 }

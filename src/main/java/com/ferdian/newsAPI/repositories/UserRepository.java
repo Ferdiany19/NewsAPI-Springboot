@@ -18,4 +18,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     // fullname,
     // @Param("em") String email,
     // @Param("p") String password);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
+
+    Boolean existsByPassword(String password);
+
 }
