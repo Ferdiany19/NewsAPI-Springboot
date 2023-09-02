@@ -1,5 +1,7 @@
 package com.ferdian.newsAPI.services.user;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +17,8 @@ import com.ferdian.newsAPI.payloads.res.ResponseHander;
 import com.ferdian.newsAPI.repositories.RoleRepository;
 import com.ferdian.newsAPI.repositories.UserRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -27,12 +31,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<?> registerUserService(RegisterUserRequest request) {
 
-        Role roleName = roleRepository.findByRole(request.getRole());
+        Set<Role> roles = new HashSet<>();
+        for (String roleName : request.getRole()) {
+            Role role = roleRepository.findByRole(roleName);
+            if (role != null) {
+                roles.add(role);
+            } else {
+                throw new EntityNotFoundException("Role Not Found");
+            }
+        }
 
         User user = new User(request.getUsername(), request.getFullname(), request.getEmail(), request.getPassword(),
-                request.getRole());
-
+                roles);
         userRepository.save(user);
+
         return ResponseHander.responseMessage(HttpStatus.CREATED.value(), "Success Add User", true);
     }
 

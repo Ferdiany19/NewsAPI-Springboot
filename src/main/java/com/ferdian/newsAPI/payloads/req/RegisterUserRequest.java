@@ -1,8 +1,7 @@
 package com.ferdian.newsAPI.payloads.req;
 
+import java.util.List;
 import java.util.Set;
-
-import com.ferdian.newsAPI.models.Role;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -24,5 +23,5 @@ public class RegisterUserRequest {
     private String password;
     @NotEmpty(message = "Role cannot be empty")
     @NotNull
-    private Set<Role> role;
+    private Set<String> role;
 }

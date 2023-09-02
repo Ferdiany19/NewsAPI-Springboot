@@ -1,6 +1,7 @@
 package com.ferdian.newsAPI.models;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ public class User {
     @ManyToMany
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     // @JoinColumn(name = "role_id")
-    private List<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -53,7 +54,7 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public User(String username, String fullname, String email, String password, List<Role> roles) {
+    public User(String username, String fullname, String email, String password, Set<Role> roles) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;

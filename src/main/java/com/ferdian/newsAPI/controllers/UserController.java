@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferdian.newsAPI.payloads.req.RegisterUserRequest;
 import com.ferdian.newsAPI.services.user.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
@@ -17,7 +19,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegisterUserRequest request) {
+    public ResponseEntity<?> registerUser(@RequestBody @Valid RegisterUserRequest request) {
         return userService.registerUserService(request);
     }
 }

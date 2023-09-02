@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ferdian.newsAPI.payloads.req.RoleRequest;
 import com.ferdian.newsAPI.services.role.RoleService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/roles")
 public class RoleController {
@@ -18,7 +20,7 @@ public class RoleController {
     RoleService roleService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createRole(@RequestBody RoleRequest request) {
+    public ResponseEntity<?> createRole(@RequestBody @Valid RoleRequest request) {
         return roleService.createRoleService(request);
     }
 
