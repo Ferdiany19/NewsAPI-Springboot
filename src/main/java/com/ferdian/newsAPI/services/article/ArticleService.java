@@ -10,4 +10,6 @@ public interface ArticleService {
     ResponseEntity<?> getArticleService();
 
     ResponseEntity<?> publishArticleService(String id);
+
+    ResponseEntity<?> getLastestArticleService();
 }

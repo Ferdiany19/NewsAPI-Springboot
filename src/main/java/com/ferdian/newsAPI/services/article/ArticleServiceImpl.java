@@ -68,4 +68,10 @@ public class ArticleServiceImpl implements ArticleService {
         return ResponseHander.responseMessage(HttpStatus.CREATED.value(), "Success Publish Article", true);
     }
 
+    @Override
+    public ResponseEntity<?> getLastestArticleService() {
+        List<Article> articles = articleRepository.OrderByCreatedAtDesc();
+        return ResponseHander.responseData(HttpStatus.OK.value(), "Gett All Articles!", articles);
+    }
+
 }
