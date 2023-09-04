@@ -1,5 +1,7 @@
 package com.ferdian.newsAPI.services.category;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<?> createCategoryService(CategoryRequest request) {
         Category category = new Category(request.getCategory());
-    categoryRepository.save(category);
-    return ResponseHander.responseData(201, "Category Added!", category);
+        categoryRepository.save(category);
+        return ResponseHander.responseData(201, "Category Added!", category);
+    }
+
+    @Override
+    public ResponseEntity<?> getCategoryService() {
+        List<Category> category = categoryRepository.findAll();
+    return ResponseHander.responseData(HttpStatus.OK.value(), "Get All Category!", category);
     }
 }

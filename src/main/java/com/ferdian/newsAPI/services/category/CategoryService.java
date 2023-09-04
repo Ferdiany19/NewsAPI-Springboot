@@ -6,4 +6,6 @@ import com.ferdian.newsAPI.payloads.req.CategoryRequest;
 
 public interface CategoryService {
     ResponseEntity<?> createCategoryService(CategoryRequest request);
+
+    ResponseEntity<?> getCategoryService();
 }
