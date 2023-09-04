@@ -1,8 +1,5 @@
 package com.ferdian.newsAPI.payloads.req;
 
-import java.util.List;
-import java.util.Set;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +18,6 @@ public class RegisterUserRequest {
     @NotEmpty(message = "Password cannot be empty")
     @Size(min = 8, max = 25, message = "Password length should between 8 and 25")
     private String password;
-    @NotEmpty(message = "Role cannot be empty")
     @NotNull
-    private Set<String> role;
+    private Long role;
 }

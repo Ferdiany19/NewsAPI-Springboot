@@ -2,7 +2,6 @@ package com.ferdian.newsAPI.models;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,6 +16,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,10 +44,18 @@ public class User {
     @Column(length = 100)
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    // @JoinColumn(name = "role_id")
-    private Set<Role> roles = new HashSet<>();
+    @JsonIgnore
+    // @ManyToMany
+    // @JoinTable(name = "users_role", joinColumns = @JoinColumn(name = "user_id"),
+    // inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinColumn(name = "role_id")
+    // private Set<Role> roles = new HashSet<>();
+    @ManyToOne
+    private Role role;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "author")
+    private Set<Article> articles = new HashSet<>();
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -54,12 +63,12 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public User(String username, String fullname, String email, String password, Set<Role> roles) {
+    public User(String username, String fullname, String email, String password, Role role) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
 
     // public User(String username, String fullname, String email, String password,

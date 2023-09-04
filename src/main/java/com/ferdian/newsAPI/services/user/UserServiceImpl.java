@@ -15,6 +15,7 @@ import com.ferdian.newsAPI.models.Role;
 import com.ferdian.newsAPI.models.User;
 import com.ferdian.newsAPI.payloads.req.LoginUserRequest;
 import com.ferdian.newsAPI.payloads.req.RegisterUserRequest;
+import com.ferdian.newsAPI.payloads.req.ResetPasswordUserRequest;
 import com.ferdian.newsAPI.payloads.res.ResponseHander;
 import com.ferdian.newsAPI.repositories.RoleRepository;
 import com.ferdian.newsAPI.repositories.UserRepository;
@@ -33,18 +34,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<?> registerUserService(RegisterUserRequest request) {
 
-        Set<Role> roles = new HashSet<>();
-        for (String roleName : request.getRole()) {
-            Role role = roleRepository.findByRole(roleName);
-            if (role != null) {
-                roles.add(role);
-            } else {
-                throw new EntityNotFoundException("Role Not Found");
-            }
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new IllegalArgumentException("Username already registered!");
         }
 
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new IllegalArgumentException("Email already registered!");
+        }
+
+        Role role = roleRepository.findById(request.getRole()).orElseThrow(() -> {
+            throw new EntityNotFoundException("Role is not found!");
+        });
+
         User user = new User(request.getUsername(), request.getFullname(), request.getEmail(), request.getPassword(),
-                roles);
+                role);
+
         userRepository.save(user);
 
         return ResponseHander.responseMessage(HttpStatus.CREATED.value(), "Success Add User", true);
@@ -61,6 +65,27 @@ public class UserServiceImpl implements UserService {
             throw new EntityNotFoundException("Password invalid!");
         }
         return ResponseHander.responseMessage(HttpStatus.OK.value(), "Login Success", true);
+    }
+
+    @Override
+    public ResponseEntity<?> resetPasswordUserService(ResetPasswordUserRequest request) {
+        if (!userRepository.existsByUsername(request.getUsernameOrEmail())
+                && !userRepository.existsByEmail(request.getUsernameOrEmail())) {
+            throw new EntityNotFoundException("Username or Email not found!");
+        }
+
+        User user = userRepository.findByUsernameOrEmail(request.getUsernameOrEmail(), request.getUsernameOrEmail());
+
+        user.setPassword(request.getNewPassword());
+        userRepository.save(user);
+        return ResponseHander.responseMessage(HttpStatus.OK.value(), "Password Updated Successfully", true);
+    }
+
+    @Override
+    public ResponseEntity<?> getAllUsersService() {
+        List<User> users = userRepository.findAll();
+
+        return ResponseHander.responseData(HttpStatus.OK.value(), "Success", users);
     }
 
 }

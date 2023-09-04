@@ -1,9 +1,10 @@
 package com.ferdian.newsAPI.repositories;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 
 import com.ferdian.newsAPI.models.User;
 
@@ -24,5 +25,12 @@ public interface UserRepository extends JpaRepository<User, String> {
     Boolean existsByEmail(String email);
 
     Boolean existsByPassword(String password);
+
+    Optional<User> findByUsername(String username);
+
+    User findByUsernameOrEmail(String username, String email);
+
+    @Query(value = "SELECT username, fullname, email FROM users", nativeQuery = true)
+    List<User> getAllUser();
 
 }

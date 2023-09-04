@@ -29,8 +29,9 @@ public class Role {
     @Column(length = 10)
     private String role;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users = new ArrayList<>();
+    // @JsonIgnore
+    // @ManyToMany(mappedBy = "roles")
+    // private Set<User> users = new HashSet<>();
 
     // public Role(String role, List<User> users) {
     // this.role = role;
