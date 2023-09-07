@@ -38,8 +38,4 @@ public class ArticleController {
         return articleService.getArticleService();
     }
 
-    @PutMapping("/publish")
-    public ResponseEntity<?> publishArticle(@RequestParam String id) {
-        return articleService.publishArticleService(id);
-    }
 }

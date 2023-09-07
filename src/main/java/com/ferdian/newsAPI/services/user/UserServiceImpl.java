@@ -118,16 +118,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> resetPasswordUserService(ResetPasswordUserRequest request) {
-        if (!userRepository.existsByUsername(request.getUsernameOrEmail())
-                && !userRepository.existsByEmail(request.getUsernameOrEmail())) {
-            throw new EntityNotFoundException("Username or Email not found!");
+        if (!userRepository.existsByEmail(request.getEmail())) {
+            throw new EntityNotFoundException("Email not found!");
         }
 
         // validasi newPassword dan oldPassword
 
-        User user = userRepository.findByEmail(request.getUsernameOrEmail());
+        User user = userRepository.findByEmail(request.getEmail());
 
-        user.setPassword(request.getNewPassword());
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
         return ResponseHander.responseMessage(HttpStatus.OK.value(), "Password Updated Successfully", true);
     }

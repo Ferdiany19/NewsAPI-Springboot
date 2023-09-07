@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class ResetPasswordUserRequest {
-    @NotEmpty(message = "Username or Email cannot be empty")
-    private String usernameOrEmail;
+    @NotEmpty(message = "Email cannot be empty")
+    private String email;
     @Size(min = 8, max = 25, message = "Password length should between 8 and 25")
     @NotEmpty(message = "Password cannot be empty")
     private String newPassword;

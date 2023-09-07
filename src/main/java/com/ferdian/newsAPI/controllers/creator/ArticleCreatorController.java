@@ -14,7 +14,7 @@ import com.ferdian.newsAPI.services.article.ArticleService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/articles")
+@RequestMapping("/api/v1/articles")
 @PreAuthorize("hasRole('CREATOR') or hasRole('ADMIN')")
 public class ArticleCreatorController {
     @Autowired
@@ -24,4 +24,5 @@ public class ArticleCreatorController {
     public ResponseEntity<?> createArticle(@RequestBody @Valid ArticleRequest request) {
         return articleService.createArticleService(request);
     }
+
 }

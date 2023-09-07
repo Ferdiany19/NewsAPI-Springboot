@@ -1,4 +1,4 @@
-package com.ferdian.newsAPI.controllers;
+package com.ferdian.newsAPI.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import com.ferdian.newsAPI.services.role.RoleService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/roles")
+@RequestMapping("/api/v1/admin/roles")
 public class RoleController {
     @Autowired
     RoleService roleService;
