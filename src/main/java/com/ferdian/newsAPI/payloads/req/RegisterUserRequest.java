@@ -2,7 +2,6 @@ package com.ferdian.newsAPI.payloads.req;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -18,6 +17,5 @@ public class RegisterUserRequest {
     @NotEmpty(message = "Password cannot be empty")
     @Size(min = 8, max = 25, message = "Password length should between 8 and 25")
     private String password;
-    @NotNull
-    private Long role;
+
 }

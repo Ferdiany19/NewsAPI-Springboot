@@ -2,6 +2,7 @@ package com.ferdian.newsAPI.services.comment;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,10 +11,14 @@ import org.springframework.stereotype.Service;
 
 import com.ferdian.newsAPI.models.Article;
 import com.ferdian.newsAPI.models.Comment;
+import com.ferdian.newsAPI.models.User;
 import com.ferdian.newsAPI.payloads.req.CommentRequest;
 import com.ferdian.newsAPI.payloads.res.ResponseHander;
 import com.ferdian.newsAPI.repositories.ArticleRepository;
 import com.ferdian.newsAPI.repositories.CommentRepository;
+import com.ferdian.newsAPI.repositories.UserRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -24,13 +29,20 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
     public ResponseEntity<?> createArticleCommentService(CommentRequest request) {
         Article article = articleRepository.findById(request.getArticleId()).orElseThrow(() -> {
             throw new NoSuchElementException("Article is not found!");
         });
 
-        Comment comment = new Comment(request.getComment(), article, request.getCommentUser());
+        User user = userRepository.findByUsername(request.getCommentUser()).orElseThrow(() -> {
+            throw new EntityNotFoundException("Author tidak ditemukan");
+        });
+
+        Comment comment = new Comment(request.getComment(), article, user);
         commentRepository.save(comment);
 
         return ResponseHander.responseMessage(HttpStatus.CREATED.value(),

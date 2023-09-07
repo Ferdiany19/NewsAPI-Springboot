@@ -1,7 +1,8 @@
-package com.ferdian.newsAPI.controllers;
+package com.ferdian.newsAPI.controllers.creator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/categories")
+@PreAuthorize("hasRole('CREATOR') or hasRole('ADMIN')")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;

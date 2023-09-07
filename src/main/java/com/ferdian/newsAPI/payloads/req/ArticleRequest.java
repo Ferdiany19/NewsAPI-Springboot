@@ -11,7 +11,7 @@ public class ArticleRequest {
     @NotEmpty(message = "Content cannot be empty")
     private String content;
     @NotNull(message = "Category cannot be empty")
-    private Long category;
+    private String category;
     @NotEmpty(message = "Author cannot be empty")
     private String author;
 }

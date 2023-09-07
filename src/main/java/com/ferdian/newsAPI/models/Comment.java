@@ -32,7 +32,9 @@ public class Comment {
     @JoinColumn(name = "article_id")
     private Article article;
 
-    private String commentUser;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User commentUser;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -42,7 +44,7 @@ public class Comment {
 
     private Boolean isDeleted = false;
 
-    public Comment(String comment, Article article, String commentUser) {
+    public Comment(String comment, Article article, User commentUser) {
         this.comment = comment;
         this.article = article;
         this.commentUser = commentUser;

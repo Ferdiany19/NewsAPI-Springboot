@@ -2,10 +2,13 @@ package com.ferdian.newsAPI.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ferdian.newsAPI.payloads.req.LoginUserRequest;
@@ -22,8 +25,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody @Valid RegisterUserRequest request) {
-        return userService.registerUserService(request);
+    public ResponseEntity<?> registerUser(@RequestBody @Valid RegisterUserRequest request,
+            @RequestParam(value = "role", defaultValue = "") String role) {
+        return userService.registerUserService(request, role);
     }
 
     @PostMapping("/login")
@@ -36,7 +40,9 @@ public class UserController {
         return userService.resetPasswordUserService(request);
     }
 
-    @GetMapping("/all")
+    @GetMapping
+    // @Secured("ADMIN")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAllUsers() {
         return userService.getAllUsersService();
     }

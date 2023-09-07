@@ -20,6 +20,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ResponseEntity<?> createCategoryService(CategoryRequest request) {
+        if (categoryRepository.existsByCategory(request.getCategory())) {
+            throw new IllegalArgumentException("Category exist!");
+        }
+
         Category category = new Category(request.getCategory());
         categoryRepository.save(category);
         return ResponseHander.responseData(201, "Category Added!", category);
@@ -28,6 +32,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ResponseEntity<?> getCategoryService() {
         List<Category> category = categoryRepository.findAll();
-    return ResponseHander.responseData(HttpStatus.OK.value(), "Get All Category!", category);
+        return ResponseHander.responseData(HttpStatus.OK.value(), "Get All Category!", category);
     }
 }
