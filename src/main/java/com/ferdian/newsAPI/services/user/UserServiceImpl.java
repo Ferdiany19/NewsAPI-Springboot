@@ -152,14 +152,8 @@ public class UserServiceImpl implements UserService {
         }
 
         if (request.getCategory() != null) {
-            Category category = categoryRepository.findById(request.getCategory()).orElseThrow(() -> {
-                throw new NoSuchElementException("Category is not found!");
-            });
+            Category category = categoryRepository.findByCategory(request.getCategory());
             article.setCategory(category);
-        }
-
-        if (!request.getUpdatedBy().equalsIgnoreCase("creator") && !request.getUpdatedBy().equalsIgnoreCase("admin")) {
-            throw new IllegalArgumentException("Update article only for creator or admin!");
         }
 
         articleRepository.save(article);

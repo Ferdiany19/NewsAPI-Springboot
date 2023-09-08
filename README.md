@@ -7,6 +7,16 @@ https://documenter.getpostman.com/view/10894444/2s9YBz3ay1
 Ini adalah API yang dibuat untuk portal berita.  
 Fitur API ini dapat membuat berita berdasarkan rolenya masing-masing.
 
+Beberapa teknologi yang digunakan dalam project kali ini:
+
+- Spring Boot
+- Spring Security
+- Jpa Repository
+- Restricted endpoints
+- JSON Web Token
+- Exceptions handling
+- Custom Error Response
+
 # 📁 Collection: Roles
 
 ## End-point: Add Role
@@ -29,9 +39,11 @@ Endpoint ini bertujuan untuk menambahkan role yang hanya bisa dilakukan oleh Adm
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                       | Type   |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDExMDEzNCwiZXhwIjoxNjk0MTEzNzM0LCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.n6bNzLGUabXG9hFmrN7L7zmWeTAAegjuoaNhNMj9PyU | string |
+| Param | value                                                                                                                                                                                       | Type |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo |
+
+| string |
 
 ### Response: 201
 
@@ -57,9 +69,11 @@ Endpoint ini untuk mendapatkan seluruh role yang telah terdaftar.
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                       | Type   |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDExMDEzNCwiZXhwIjoxNjk0MTEzNzM0LCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.n6bNzLGUabXG9hFmrN7L7zmWeTAAegjuoaNhNMj9PyU | string |
+| Param | value                                                                                                                                                                                       | Type |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo |
+
+| string |
 
 ### Response: 200
 
@@ -162,7 +176,8 @@ Endpoint ini bertujuan untuk login menggunakan Email dan Password. Dan mendapatk
 ```json
 {
   "email": "admin1@gmail.com",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDExMDU0MiwiZXhwIjoxNjk0MTE0MTQyLCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.MeBqbEa7mmkzb4y22Kdgs3WNEO17WhYvF0ZcjhV-cM8"
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo
+"
 }
 ```
 
@@ -211,9 +226,10 @@ Endpoint ini bertujuan untuk mendapatkan semua list user.
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                       | Type   |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDExMDc3OCwiZXhwIjoxNjk0MTE0Mzc4LCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.SWGcCu0XnAP8eLcZnMeA3h0QpsTteKBTTPvGxr-pEbs | string |
+| Param  | value                                                                                                                                                                                       | Type |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| token  | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo |
+| string |
 
 ### Response: 200
 
@@ -294,9 +310,9 @@ Endpoint ini bertujuan untuk membuat artikel memasukkan kategori. Hanya role CRE
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                       | Type   |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDExMjE0NCwiZXhwIjoxNjk0MTE1NzQ0LCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.Q-rQbqguh_RQX1uMZvu0c3dDtQH1lItH-6ZmK38dIuU | string |
+| Param | value                                                                                                                                                                                       | Type   |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo | string |
 
 ### Response: 201
 
@@ -474,9 +490,9 @@ Endpoint ini bertujuan untuk mempublish artikel yang masih di draft. Endpoint in
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                       | Type   |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDExMTQzMywiZXhwIjoxNjk0MTE1MDMzLCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.gLegxamMMYaeWUovqJ0aqGEPPPF3p4_HqaTjbAISrH0 | string |
+| Param | value                                                                                                                                                                                       | Type   |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo | string |
 
 ### Response: 201
 
@@ -556,9 +572,9 @@ Endpoint ini bertujuan untuk menambahkan category untuk article/berita.
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                         | Type   |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDEwNzY5OSwiZXhwIjoxNjk0MTExMjk5LCJlbWFpbCI6ImNyZWF0b3IxQGdtYWlsLmNvbSJ9.GbbtGGQrCf5bb_b8_SjvFuXfNGg3b7osDqYxSXNXugk | string |
+| Param | value                                                                                                                                                                                       | Type   |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo | string |
 
 ### Response: 201
 
@@ -583,9 +599,9 @@ Endpoint ini bertujuan untuk mendapatkan semua list Categories.
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                         | Type   |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDEwNzY5OSwiZXhwIjoxNjk0MTExMjk5LCJlbWFpbCI6ImNyZWF0b3IxQGdtYWlsLmNvbSJ9.GbbtGGQrCf5bb_b8_SjvFuXfNGg3b7osDqYxSXNXugk | string |
+| Param | value                                                                                                                                                                                       | Type   |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo | string |
 
 ### Response: 200
 
@@ -728,9 +744,9 @@ Endpoint ini bertujuan untuk mengupload file/gambar untuk sebuah artikel.
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                       | Type   |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDEwOTU5NCwiZXhwIjoxNjk0MTEzMTk0LCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.8GFwP_pstsfKBH24zuReVsbsBkHJ48UUtCynSMvoxM4 | string |
+| Param | value                                                                                                                                                                                       | Type   |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo | string |
 
 ### Response: 201
 
@@ -790,9 +806,9 @@ Endpoint ini bertujuan untuk mendapatkan image by id.
 
 ### 🔑 Authentication bearer
 
-| Param | value                                                                                                                                                                                                       | Type   |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmYXp6YmNhIiwic3ViIjoiYXV0aCIsImlhdCI6MTY5NDEwOTk5MSwiZXhwIjoxNjk0MTEzNTkxLCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20ifQ.83mA73b2em_KnI54lwbQwrcb28V7ii8gRnUP5HOZ2fA | string |
+| Param | value                                                                                                                                                                                       | Type   |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| token | eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5NDE0MDkzOCwiaWF0IjoxNjk0MTQwOTM4fQ.q-Lbz3zU-a6cb28Ok5DrjaSyM_TGcvgNYgvutBWgfdo | string |
 
 ```
 

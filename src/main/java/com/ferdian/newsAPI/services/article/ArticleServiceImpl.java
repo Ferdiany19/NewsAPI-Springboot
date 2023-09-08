@@ -90,9 +90,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
         if (request.getCategory() != null) {
-            Category category = categoryRepository.findById(request.getCategory()).orElseThrow(() -> {
-                throw new NoSuchElementException("Article type is not found!");
-            });
+            Category category = categoryRepository.findByCategory(request.getCategory());
             article.setCategory(category);
         }
 

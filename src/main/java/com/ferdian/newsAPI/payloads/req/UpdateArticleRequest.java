@@ -9,7 +9,7 @@ public class UpdateArticleRequest {
     private String articleId;
     private String title;
     private String content;
-    private Long category;
+    private String category;
     @NotEmpty(message = "Updated By cannot be empty")
     private String updatedBy;
 }

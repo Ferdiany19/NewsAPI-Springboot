@@ -38,7 +38,7 @@ public class StorageImageServiceImpl implements StorageImageService {
 
         // file content type -> untuk ambil type filenya
 
-        // cari entitas buku
+        // cari entitas Article
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new NoSuchElementException("Article is not found!"));
 
@@ -46,17 +46,14 @@ public class StorageImageServiceImpl implements StorageImageService {
         imageArticleRepository.save(imageArticle); // menyimpan id
 
         // buatkan sharedUrl
-        /*
-         * endpoint untuk upload: /admin/files/book -> POST
-         * endpoint untuk load: /files/book/{uuidGambar} ->GET
-         */
+
         String sharedUrl = ServletUriComponentsBuilder
                 .fromCurrentContextPath() // localhost:9090
-                .path("/files/book/")
+                .path("/files/article/")
                 .path(imageArticle.getId()) // id gambar
                 .toUriString();
 
-        // set sharedurl ke obj imagebook
+        // set sharedurl ke obj imageArticle
         imageArticle.setSharedUrl(sharedUrl);
         imageArticleRepository.save(imageArticle);
 
